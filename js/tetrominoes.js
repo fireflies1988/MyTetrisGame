@@ -151,11 +151,11 @@ const Z = [
 ];
 
 const PIECES = [
-	[Z, "red"],
-	[S, "green"],
-	[T, "yellow"],
-	[O, "blue"],
-	[L, "purple"],
-	[I, "cyan"],
-	[J, "orange"]
+	[Z, "Z", "red"],
+	[S, "S", "green"],
+	[T, "T", "yellow"],
+	[O, "O", "blue"],
+	[L, "L", "purple"],
+	[I, "I", "cyan"],
+	[J, "J", "orange"]
 ]
