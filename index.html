@@ -3,17 +3,40 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tetris Game</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <canvas id="gameBoard"></canvas>
-  <div>Score: <span id="score">0</span></div>
+  <div class="container">
+    <div class="game-board">
+      <canvas id="gameBoard"></canvas>
+    </div>
+
+    <div class="hold">
+      <p class="format">HOLD</p>
+      <canvas id="hold"></canvas>
+    </div>
+
+    <div class="next">
+      <p class="format">NEXT</p>
+      <canvas id="next"></canvas>
+    </div>
+
+    <div class="score-level-lines">
+      <p class="format">SCORE</p>
+      <div id="score"></div>
+      <p class="format">LEVEL</p>
+      <div id="level"></div>
+      <p class="format">LINES</p>
+      <div id="lines"></div>
+    </div>
+  </div>
 
   <script src="js/constants.js"></script>
   <script src="js/tetrominoes.js"></script>
   <script src="js/piece.js"></script>
-  <script src="js/board.js"></script>
+  <script src="js/gameFrame.js"></script>
   <script src="js/tetris.js"></script>
 </body>
 </html>

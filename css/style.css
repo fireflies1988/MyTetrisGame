@@ -1,3 +1,96 @@
-﻿body
-{
+﻿* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 650px;
+  border: 5px solid black;
+}
+
+.game-board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game-board canvas {
+  /*  border: 20px solid transparent;
+border-image: url("/images/border.png") 20% stretch;*/
+  border: 10px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(315deg, #4dff03, #00d0ff);
+  box-shadow: 6px 6px 8px green;
+}
+
+p.format {
+  margin: 10px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.hold {
+  float: left;
+  margin-left: 40px;
+  margin-top: 40px;
+  width: 25%;
+  height: 170px;
+  border: 5px solid black;
+  background-color: gray;
+  border-radius: 10px;
+  text-align: center; /*this center the canvas horizontally ???? wtf */
+}
+
+.hold canvas {
+  width: 90%;
+  height: 65%;
+  background-color: black;
+}
+
+.next {
+  float: right;
+  margin-right: 40px;
+  margin-top: 40px;
+  width: 25%;
+  height: 170px;
+  border: 5px solid black;
+  background-color: gray;
+  border-radius: 10px;
+  text-align: center; /*this center the canvas horizontally ???? wtf */
+}
+
+.next canvas {
+  width: 90%;
+  height: 65%;
+  background-color: black;
+}
+
+.score-level-lines {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  width: 25%;
+  height: 320px;
+  border: 5px solid black;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.score-level-lines div {
+  margin: auto;
+  width: 90%;
+  height: 18%;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
