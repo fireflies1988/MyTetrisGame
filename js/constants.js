@@ -3,3 +3,4 @@ const WIDTH = 270, HEIGHT = WIDTH * 2;
 const ROW = 20, COLUMN = 10;
 const SQUARE_SIZE = WIDTH / COLUMN;
 const VACANT = "Black"; // color of an empty square
+const GRID_LINE_COLOR = "#262626";

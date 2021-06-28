@@ -5,34 +5,81 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tetris Game</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mystyle.css" />
+  <script src="https://kit.fontawesome.com/fdf99d5bd4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="game-board">
-      <canvas id="gameBoard"></canvas>
-    </div>
+  <div class="main">
+    <div class="game-frame">
+      <div class="game-board">
+        <canvas id="gameBoard"></canvas>
+      </div>
 
-    <div class="hold">
-      <p class="format">HOLD</p>
-      <canvas id="hold"></canvas>
-    </div>
+      <div class="hold">
+        <p class="format">HOLD</p>
+        <canvas id="hold"></canvas>
+      </div>
 
-    <div class="next">
-      <p class="format">NEXT</p>
-      <canvas id="next"></canvas>
-    </div>
+      <div class="next">
+        <p class="format">NEXT</p>
+        <canvas id="next"></canvas>
+      </div>
 
-    <div class="score-level-lines">
-      <p class="format">SCORE</p>
-      <div id="score"></div>
-      <p class="format">LEVEL</p>
-      <div id="level"></div>
-      <p class="format">LINES</p>
-      <div id="lines"></div>
+      <div class="score-level-lines">
+        <p class="format">SCORE</p>
+        <div id="score"></div>
+        <p class="format">LEVEL</p>
+        <div id="level"></div>
+        <p class="format">LINES</p>
+        <div id="lines"></div>
+      </div>
     </div>
   </div>
 
+
+  <footer>
+    <div class="footer">
+      <div class="about-tetris">
+        <h2>About Tetris</h2>
+        <p>
+          Tetris ® & © 1985~2020 Tetris Holding. Tetris logos, Tetris theme song and Tetriminos are trademarks
+          of Tetris Holding. The Tetris trade dress is owned by Tetris Holding.
+          Licensed to The Tetris Company. Tetris Game Design by Alexey Pajitnov. Tetris Logo Design by Roger Dean.
+          All Rights Reserved. All other trademarks are the property of their respective owners.
+        </p>
+      </div>
+
+      <div class="designed-by">
+        <h2>Designed by</h2>
+        <p>Tung Kieu</p>
+      </div>
+
+      <div class="social-media">
+        <h2>Social media</h2>
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-youtube"></i>
+        <i class="fa fa-snapchat"></i>
+        <i class="fa fa-pinterest"></i>
+      </div>
+
+      <div class="contact-info">
+        <h2>Contact info</h2>
+        <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;647 Hell Street, Phoenixville, PA, 19460, USA</p>
+        <p><i class="fa fa-phone"></i>&nbsp;&nbsp;+1234 567 890</p>
+        <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="xzlupinzx@gmail.com">xzlupinzx@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener("keydown", function(e) {
+      if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+      }
+    }, false);
+  </script>
   <script src="js/constants.js"></script>
   <script src="js/tetrominoes.js"></script>
   <script src="js/piece.js"></script>

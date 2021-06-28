@@ -13,11 +13,11 @@ const holdContext = holdCanvas.getContext("2d");
 
 
 // draw a square
-function drawSquare(x, y, color) {
+function drawSquare(x, y, color, borderColor) {
   boardContext.fillStyle = color;
   boardContext.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 
-  boardContext.strokeStyle = "#262626";
+  boardContext.strokeStyle = borderColor;
   boardContext.strokeRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
@@ -34,7 +34,7 @@ for (let r = 0; r < ROW; r++) {
 function drawBoard() {
   for (let r = 0; r < ROW; r++) {
     for (let c = 0; c < COLUMN; c++) {
-      drawSquare(c, r, board[r][c]);
+      drawSquare(c, r, board[r][c], GRID_LINE_COLOR);
     }
   }
 }

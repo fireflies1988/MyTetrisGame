@@ -71,29 +71,52 @@ class Piece {
     }
   }
 
-  // draw a piece to the board
-  draw() {
+  drawPiece(x, y, color, borderColor) {
     for (let r = 0; r < this.activeTetromino.length; r++) {
       for (let c = 0; c < this.activeTetromino.length; c++) {
         // draw only occupied squares
         if (this.activeTetromino[r][c]) {
-          drawSquare(this.x + c, this.y + r, this.color);
+          drawSquare(x + c, y + r, color, borderColor);
         }
       }
     }
   }
 
-  // undraw a piece 
-  undraw() {
-    for (let r = 0; r < this.activeTetromino.length; r++) {
-      for (let c = 0; c < this.activeTetromino.length; c++) {
-        // draw only occupied squares
-        if (this.activeTetromino[r][c]) {
-          drawSquare(this.x + c, this.y + r, VACANT);
-        }
+  // draw the ghost piece
+  drawGhostPiece() {
+    for (let y = this.y; y < ROW; y++) {
+      if (this.ghostPieceCollision(this.x, y, this.activeTetromino)) {
+        this.drawPiece(this.x, y - 1, VACANT, this.color);
+        break;
       }
     }
   }
+
+  // undraw the ghost piece
+  undrawGhostPiece() {
+    for (let y = this.y; y < ROW; y++) {
+      if (this.ghostPieceCollision(this.x, y, this.activeTetromino)) {
+        // just override color
+        this.drawPiece(this.x, y - 1, VACANT, VACANT);
+        this.drawPiece(this.x, y - 1, VACANT, VACANT);
+        this.drawPiece(this.x, y - 1, VACANT, GRID_LINE_COLOR);
+        break;
+      }
+    }
+  }
+
+  // draw a piece to the board
+  draw() {
+    this.drawGhostPiece();
+    this.drawPiece(this.x, this.y, this.color, GRID_LINE_COLOR);
+  }
+
+  // undraw a piece 
+  undraw() {
+    this.drawPiece(this.x, this.y, VACANT, GRID_LINE_COLOR);
+    this.undrawGhostPiece();
+  }
+
 
   // move down the piece
   async moveDown() {
@@ -206,6 +229,36 @@ class Piece {
     }
   }
 
+  ghostPieceCollision(x, y, piece) {
+    for (let r = 0; r < piece.length; r++) {
+      for (let c = 0; c < piece.length; c++) {
+        // if the square is empty, skip it
+        if (!piece[r][c]) {
+          continue;
+        }
+
+        // coordinates of the ghost piece after movement
+        let newX = c + x;
+        let newY = r + y;
+
+        // check if piece reaches the left, right, bottom wall
+        if (newX < 0 || newX >= COLUMN || newY >= ROW) {
+          return true;
+        }
+
+        if (newY < 0) {
+          continue;
+        }
+
+        // check if there is a locked piece already in place
+        if (board[newY][newX] != VACANT) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   // detect collisions
   collides(x, y, piece) {
     for (let r = 0; r < piece.length; r++) {
@@ -266,7 +319,7 @@ class Piece {
       }
       if (isRowFull) {
         // move down all rows above it
-        for (let y = r; y > 1; y--) {
+        for (let y = r; y >= 1; y--) {
           for (let c = 0; c < COLUMN; c++) {
             board[y][c] = board[y - 1][c];
           }

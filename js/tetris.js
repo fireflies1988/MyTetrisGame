@@ -95,7 +95,7 @@ function control() {
     }
   }
 }
-let intervalID1 = setInterval(control, 70);
+let intervalID1 = setInterval(control, 60);
 
 // drop the piece every 1 second
 function drop() {

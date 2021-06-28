@@ -1,0 +1,192 @@
+﻿:root {
+  --blue: #73c5ff;
+  --transparent-black: rgba(0, 0, 0, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.main {
+  position: relative;
+  background: url("/images/butterflies-background.jpg") no-repeat center;
+  background-size: cover;
+  height: 850px;
+}
+
+div.game-frame {
+  position: absolute;
+  top: 40px;
+  width: 58%;
+  height: 650px;
+}
+
+.game-board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game-board canvas {
+  /*  border: 20px solid transparent;
+border-image: url("/images/border.png") 20% stretch;*/
+  border: 10px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(315deg, #4dff03, #00d0ff);
+  box-shadow: 6px 6px 8px green;
+}
+
+p.format {
+  margin: 10px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  color: yellow;
+}
+
+.hold {
+  float: left;
+  margin-left: 40px;
+  margin-top: 40px;
+  width: 25%;
+  height: 170px;
+  border: 5px solid var(--blue);
+  background-color: transparent;
+  box-shadow: 6px 6px 8px var(--blue);
+  border-radius: 10px;
+  text-align: center; /*this center the canvas horizontally ???? wtf */
+}
+
+.hold canvas {
+  width: 90%;
+  height: 65%;
+  background-color: var(--transparent-black);
+}
+
+.next {
+  float: right;
+  margin-right: 40px;
+  margin-top: 40px;
+  width: 25%;
+  height: 170px;
+  border: 5px solid var(--blue);
+  background-color: transparent;
+  box-shadow: 6px 6px 8px var(--blue);
+  border-radius: 10px;
+  text-align: center; /*this center the canvas horizontally ???? wtf */
+}
+
+.next canvas {
+  width: 90%;
+  height: 65%;
+  background-color: var(--transparent-black);
+}
+
+.score-level-lines {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  width: 25%;
+  height: 320px;
+  border: 5px solid var(--blue);
+  background-color: transparent;
+  box-shadow: 6px 6px 8px var(--blue);
+  border-radius: 10px;
+}
+
+.score-level-lines div {
+  margin: auto;
+  width: 90%;
+  height: 18%;
+  background-color: var(--transparent-black);
+  color: lime;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  background-color: #1a1a1a;
+  padding: 10px;
+  color: #999999;
+}
+
+footer h2 {
+  position: relative;
+  color: white;
+}
+
+footer h2::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  background: red;
+}
+
+footer i {
+  color: #e6e6e6;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+
+.footer .about-tetris {
+  flex: 40%;
+  padding: 0 15px;
+}
+
+.footer .designed-by {
+  flex: 20%;
+  padding: 0 15px;
+}
+
+.footer .social-media {
+  flex: 20%;
+  padding: 0 15px;
+}
+
+.footer .social-media i {
+  display: inline-block;
+  text-align: center;
+  background-color: #333333;
+  width: 30px;
+  padding: 7px 0;
+  border-radius: 5px;
+}
+
+.footer .social-media i:hover {
+  background-color: red;
+}
+
+.footer .contact-info {
+  flex: 20%;
+  padding: 0 15px;
+}
+
+.footer .contact-info a:link {
+  color: #999999;
+}
+
+.footer .contact-info a:visited {
+  color: blue;
+}
+
+.footer .contact-info a:hover {
+  color: green;
+}
+
+.footer .contact-info a:active {
+  color: yellow;
+}
