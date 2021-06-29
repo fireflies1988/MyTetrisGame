@@ -22,50 +22,26 @@ class Piece {
     return new Piece(PIECES[random][0], PIECES[random][1], PIECES[random][2]);
   }
 
-  // draw next piece to the "next" frame
-  drawPieceToNextFrame() {
-    nextContext.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
+  // just for hold and next canvas
+  drawPieceToCanvas(canvas, context) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     let width, height;
     if (this.name == "I" || this.name == "O") {
       width = height = 4 * SQUARE_SIZE;
     } else {
       width = height = 3 * SQUARE_SIZE;
     }
-    let x = nextCanvas.width / 2 - width / 2;
-    let y = nextCanvas.height / 2 - height / 2;
+    let x = canvas.width / 2 - width / 2;
+    let y = canvas.height / 2 - height / 2;
     for (let r = 0; r < this.activeTetromino.length; r++) {
       for (let c = 0; c < this.activeTetromino.length; c++) {
         // draw only occupied squares
         if (this.activeTetromino[r][c]) {
-          nextContext.fillStyle = this.color;
-          nextContext.fillRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+          context.fillStyle = this.color;
+          context.fillRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 
-          nextContext.strokeStyle = "#262626";
-          nextContext.strokeRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-        }
-      }
-    }
-  }
-  // draw next piece to the "hold" frame
-  drawPieceToHoldFrame() {
-    holdContext.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
-    let width, height;
-    if (this.name == "I" || this.name == "O") {
-      width = height = 4 * SQUARE_SIZE;
-    } else {
-      width = height = 3 * SQUARE_SIZE;
-    }
-    let x = holdCanvas.width / 2 - width / 2;
-    let y = holdCanvas.height / 2 - height / 2;
-    for (let r = 0; r < this.activeTetromino.length; r++) {
-      for (let c = 0; c < this.activeTetromino.length; c++) {
-        // draw only occupied squares
-        if (this.activeTetromino[r][c]) {
-          holdContext.fillStyle = this.color;
-          holdContext.fillRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-
-          holdContext.strokeStyle = "#262626";
-          holdContext.strokeRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+          context.strokeStyle = GRID_LINE_COLOR;
+          context.strokeRect(x + c * SQUARE_SIZE, y + r * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
         }
       }
     }
@@ -128,12 +104,14 @@ class Piece {
         this.undraw();
         this.y += 2;
         this.draw();
+        dropTime = 1000;
         clearInterval(intervalID2);
-        intervalID2 = setInterval(drop, 1000);
+        intervalID2 = setInterval(drop, dropTime);
         return;
       }
+      dropTime = 1000;
       clearInterval(intervalID2);
-      intervalID2 = setInterval(drop, 1000);
+      intervalID2 = setInterval(drop, dropTime);
     }
     if (!this.collides(0, 1, this.activeTetromino)) {
       this.undraw();
@@ -145,6 +123,7 @@ class Piece {
       if (!isHardDrop) {
         await sleep(400);
       }
+      hardDropSound.play();
       if (!this.collides(0, 1, this.activeTetromino)) {
         disabled = false;
         return;
@@ -154,13 +133,14 @@ class Piece {
         }
         disabled = false;
         isHardDrop = false;
+        dropTime = 1;
         clearInterval(intervalID2);
-        intervalID2 = setInterval(drop, 1);
+        intervalID2 = setInterval(drop, dropTime);
         this.lock();
         p = nextPiece;
         p.draw();
         nextPiece = Piece.randomPiece();
-        nextPiece.drawPieceToNextFrame();
+        nextPiece.drawPieceToCanvas(nextCanvas, nextContext);
       }
     }
   }
@@ -189,9 +169,17 @@ class Piece {
     let kick = 0;
     if (this.collides(0, 0, next)) {
       if (this.x > COLUMN / 2) {
-        kick = -1; // move the piece to the left when colliding with the right wall
+        if (this.name == "I" && this.pattern == 3) {
+          kick = -2;
+        } else {
+          kick = -1; // move the piece to the left when colliding with the right wall
+        }
       } else {
-        kick = 1; // move the piece to the right when colliding with the left wall
+        if (this.name == "I" && this.pattern == 1) {
+          kick = 2;
+        } else {
+          kick = 1; // move the piece to the right when colliding with the left wall
+        }
       }
     }
     if (!this.collides(kick, 0, next)) {
@@ -301,13 +289,15 @@ class Piece {
         if (this.y + r < 0) {
           clearInterval(intervalID1);
           clearInterval(intervalID2);
-          alert("Game over");
+          showGameOverMenu();
           return;
         }
         // lock the piece
         board[this.y + r][this.x + c] = this.color;
       }
     }
+
+    let flag = false;  // true if row full exists
     // remove full rows
     for (let r = 0; r < ROW; r++) {
       let isRowFull = true;
@@ -318,6 +308,7 @@ class Piece {
         }
       }
       if (isRowFull) {
+        flag = true;
         // move down all rows above it
         for (let y = r; y >= 1; y--) {
           for (let c = 0; c < COLUMN; c++) {
@@ -331,7 +322,11 @@ class Piece {
         // increase the score
         score += 10;
         lines++;
+
       }
+    }
+    if (flag == true) {
+        clearLineSound.play();
     }
     // update the board
     drawBoard();

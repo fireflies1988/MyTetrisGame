@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tetris Game</title>
+  <title>My Tetris Game</title>
   <link rel="stylesheet" href="css/mystyle.css" />
   <script src="https://kit.fontawesome.com/fdf99d5bd4.js" crossorigin="anonymous"></script>
 </head>
@@ -13,6 +13,26 @@
     <div class="game-frame">
       <div class="game-board">
         <canvas id="gameBoard"></canvas>
+
+        <div id="menu">
+          <div class="logo">
+            <p>
+              <span style="color:#ea1118">T</span>
+              <span style="color:#fe9e15">E</span>
+              <span style="color:#ffe62c">T</span>
+              <span style="color:#51cf3a">R</span>
+              <span style="color:#00e9f9">I</span>
+              <span style="color:#c825c3">S</span>
+            </p>
+          </div>
+          <p id="gameOver">GAME OVER</p>
+          <button class="button" id="resumeBtn" onclick="resume()">RESUME</button>
+          <button class="button" id="playBtn" onclick="play()">PLAY</button>
+          <button class="button" id="settingsBtn" onclick="setup()">SETTINGS</button>
+          <button class="button"id="helpBtn" onclick="help()">HOW TO PLAY</button>
+          <button class="button" id="restartBtn" onclick="restart()">RESTART</button>
+          <button class="button" id="quitBtn" onclick="quit()">QUIT</button>
+        </div>
       </div>
 
       <div class="hold">
@@ -32,6 +52,13 @@
         <div id="level"></div>
         <p class="format">LINES</p>
         <div id="lines"></div>
+      </div>
+
+      <button id="pauseBtn" onclick="pause()"><i class="fa fa-pause"></i></button>
+
+      <div id="help">
+        <img src="/images/help.png" alt="How to play" width="450"/>
+        <button class="button" id="done" onclick="done()">Done</button>
       </div>
     </div>
   </div>
@@ -66,9 +93,9 @@
 
       <div class="contact-info">
         <h2>Contact info</h2>
-        <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;647 Hell Street, Phoenixville, PA, 19460, USA</p>
+        <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;647 Hell Street, Phoenixville, PA, 19460, Vietnam</p>
         <p><i class="fa fa-phone"></i>&nbsp;&nbsp;+1234 567 890</p>
-        <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="xzlupinzx@gmail.com">xzlupinzx@gmail.com</a></p>
+        <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;xzlupinzx@gmail.com</p>
       </div>
     </div>
   </footer>
@@ -81,9 +108,8 @@
     }, false);
   </script>
   <script src="js/constants.js"></script>
-  <script src="js/tetrominoes.js"></script>
   <script src="js/piece.js"></script>
   <script src="js/gameFrame.js"></script>
-  <script src="js/tetris.js"></script>
+  <script src="js/control.js"></script>
 </body>
 </html>

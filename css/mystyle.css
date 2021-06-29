@@ -5,6 +5,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 
 body {
@@ -39,6 +40,68 @@ border-image: url("/images/border.png") 20% stretch;*/
   border-image-slice: 1;
   border-image-source: linear-gradient(315deg, #4dff03, #00d0ff);
   box-shadow: 6px 6px 8px green;
+}
+
+.game-board #menu {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--transparent-black);
+  border: 5px outset green;
+}
+
+.game-board #menu div.logo {
+  margin: 40px auto 60px auto;
+  width: 90%;
+  border: 5px double green;
+  outline: 2px solid blue;
+  box-shadow: 4px 4px 5px blue;
+}
+
+.game-board #menu div.logo p {
+  text-align: center;
+  font-size: 0px; /*remove the space between two <span>*/
+  text-shadow: 2px 2px 4px green;
+}
+
+.game-board #menu div.logo p span {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+#menu > p {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  display: none;
+}
+
+.button {
+  display: block;
+  margin: auto auto 10px auto;
+  width: 65%;
+  height: 35px;
+  background-color: green;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+#menu #resumeBtn, #menu #quitBtn, #menu #restartBtn {
+  display: none;
+}
+
+.button:hover {
+  background-color: limegreen;
+}
+
+.button:active {
+  transform: translateY(3px);
 }
 
 p.format {
@@ -89,6 +152,7 @@ p.format {
 
 .score-level-lines {
   position: absolute;
+  float: left;
   left: 40px;
   bottom: 40px;
   width: 25%;
@@ -109,6 +173,38 @@ p.format {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#pauseBtn {
+  display: none;
+  position: absolute;
+  right: 180px;
+  bottom: 40px;
+  font-size: 40px;
+  padding: 10px 15px;
+  color: white;
+  border: 5px solid var(--blue);
+  background-color: var(--transparent-black);
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--blue);
+}
+
+#pauseBtn:hover {
+  background-color: var(--blue);
+}
+
+#pauseBtn:active {
+  transform: translateY(8px);
+}
+
+#help {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #242323;
+  border: 5px groove white;
 }
 
 footer {
@@ -175,18 +271,7 @@ footer i {
   padding: 0 15px;
 }
 
-.footer .contact-info a:link {
-  color: #999999;
-}
-
-.footer .contact-info a:visited {
-  color: blue;
-}
-
-.footer .contact-info a:hover {
+.footer .contact-info > p:hover {
   color: green;
-}
-
-.footer .contact-info a:active {
-  color: yellow;
+  cursor: pointer;
 }
