@@ -1,9 +1,14 @@
-// JavaScript source code
 const WIDTH = 270, HEIGHT = WIDTH * 2;
 const ROW = 20, COLUMN = 10;
 const SQUARE_SIZE = WIDTH / COLUMN;
 const VACANT = "Black"; // color of an empty square
 const GRID_LINE_COLOR = "#262626";
+
+// Score values
+const SINGLE_LINE_CLEAR = 100;
+const DOUBLE_LINE_CLEAR = 300;
+const TRIPLE_LINE_CLEAR = 500;
+const TETRIS_LINE_CLEAR = 800;
 
 const I = [
 	[

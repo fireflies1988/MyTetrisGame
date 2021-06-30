@@ -9,9 +9,7 @@ let isHoldOnce = false;
 let dropTime;
 let p, nextPiece, holdPiece;
 let intervalID1, intervalID2;
-let hardDropSound;
-let clearLineSound;
-let rotateSound;
+let hardDropSound, clearLineSound, rotateSound, gameoverSound, myMusic;
 
 // control the piece
 document.addEventListener("keydown", function(event) {
@@ -124,7 +122,9 @@ function Sound(src) {
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
   this.play = function() {
-    this.sound.play();
+    if (soundFXElement.checked) {
+      this.sound.play();
+    }
   }
   this.stop = function() {
     this.sound.pause();
@@ -160,7 +160,7 @@ function showHomeMenu() {
   playElement.style.display = "block";
   resumeElement.style.display = "none";
   quitElement.style.display = "none";
-  settingsElement.style.display = "block";
+  settingsBtnElement.style.display = "block";
   howToPlayElement.style.display = "block";
   restartElement.style.display = "none";
   pauseElement.style.display = "none";
@@ -172,7 +172,7 @@ function showGameOverMenu() {
   gameOverElement.style.display = "block";
   playElement.style.display = "none";
   resumeElement.style.display = "none";
-  settingsElement.style.display = "none";
+  settingsBtnElement.style.display = "none";
   howToPlayElement.style.display = "none";
   restartElement.style.display = "block";
   quitElement.style.display = "block";
@@ -187,12 +187,16 @@ function play() {
   nextPiece.drawPieceToCanvas(nextCanvas, nextContext);
   holdPiece = null;
 
-  hardDropSound = new Sound("/audio/slow-hit.mp3");
-  clearLineSound = new Sound("/audio/clear-line.mp3");
-  rotateSound = new Sound("/audio/block-rotate.mp3");
+  hardDropSound = new Sound("audio/slow-hit.mp3");
+  clearLineSound = new Sound("audio/clear-line-speed-1.3x.mp3");
+  rotateSound = new Sound("audio/block-rotate.mp3");
+  gameoverSound = new Sound("audio/gameover.mp3");
 
   menuElement.style.display = "none";
   pauseElement.style.display = "initial";
+  resumeElement.style.display = "block";
+  settingsBtnElement.style.display = "block";
+  howToPlayElement.style.display = "block";
 
   dropTime = 1;
   intervalID1 = setInterval(control, 60);
@@ -235,7 +239,9 @@ function restart() {
 }
 
 function setup() {
-
+  menuElement.style.display = "none";
+  settingsMenuElement.style.display = "initial";
+  settingsTitleElement.style.display = "block";
 }
 
 function help() {
@@ -244,4 +250,10 @@ function help() {
 
 function done() {
   helpElement.style.display = "none";
+}
+
+function doneSetup() {
+  settingsMenuElement.style.display = "none";
+  settingsTitleElement.style.display = "none";
+  menuElement.style.display = "initial";
 }

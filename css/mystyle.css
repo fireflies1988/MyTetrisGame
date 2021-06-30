@@ -12,9 +12,16 @@ body {
   margin: 0;
 }
 
+.myborder {
+  border: 5px solid var(--blue);
+  background-color: transparent;
+  box-shadow: 6px 6px 8px var(--blue);
+  border-radius: 10px;
+}
+
 .main {
   position: relative;
-  background: url("/images/butterflies-background.jpg") no-repeat center;
+  background: url("../images/butterflies-background.jpg") no-repeat center; /*the path is relative to the .css file*/
   background-size: cover;
   height: 850px;
 }
@@ -42,7 +49,7 @@ border-image: url("/images/border.png") 20% stretch;*/
   box-shadow: 6px 6px 8px green;
 }
 
-.game-board #menu {
+.game-board .menu {
   position: absolute;
   width: 80%;
   height: 80%;
@@ -53,7 +60,7 @@ border-image: url("/images/border.png") 20% stretch;*/
   border: 5px outset green;
 }
 
-.game-board #menu div.logo {
+.game-board .menu div.logo {
   margin: 40px auto 60px auto;
   width: 90%;
   border: 5px double green;
@@ -61,18 +68,18 @@ border-image: url("/images/border.png") 20% stretch;*/
   box-shadow: 4px 4px 5px blue;
 }
 
-.game-board #menu div.logo p {
+.game-board .menu div.logo p {
   text-align: center;
   font-size: 0px; /*remove the space between two <span>*/
   text-shadow: 2px 2px 4px green;
 }
 
-.game-board #menu div.logo p span {
+.game-board .menu div.logo p span {
   font-size: 45px;
   font-weight: bold;
 }
 
-#menu > p {
+.menu > p {
   color: white;
   text-align: center;
   font-weight: bold;
@@ -92,8 +99,19 @@ border-image: url("/images/border.png") 20% stretch;*/
   border: none;
 }
 
-#menu #resumeBtn, #menu #quitBtn, #menu #restartBtn {
+.menu #resumeBtn, .menu #quitBtn, .menu #restartBtn {
   display: none;
+}
+
+#settingsMenu {
+  display: none;
+}
+
+#settingsMenu form {
+  color: white;
+  margin: auto;
+  width: 65%;
+  height: 35%;
 }
 
 .button:hover {
@@ -118,10 +136,6 @@ p.format {
   margin-top: 40px;
   width: 25%;
   height: 170px;
-  border: 5px solid var(--blue);
-  background-color: transparent;
-  box-shadow: 6px 6px 8px var(--blue);
-  border-radius: 10px;
   text-align: center; /*this center the canvas horizontally ???? wtf */
 }
 
@@ -137,10 +151,6 @@ p.format {
   margin-top: 40px;
   width: 25%;
   height: 170px;
-  border: 5px solid var(--blue);
-  background-color: transparent;
-  box-shadow: 6px 6px 8px var(--blue);
-  border-radius: 10px;
   text-align: center; /*this center the canvas horizontally ???? wtf */
 }
 
@@ -150,6 +160,22 @@ p.format {
   background-color: var(--transparent-black);
 }
 
+.relaxing-music {
+  clear: right;
+  float: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  width: 20%;
+  height: 230px;
+}
+
+.relaxing-music iframe {
+  display: block;
+  margin: auto;
+  width: 95%;
+  height: 65%;
+}
+
 .score-level-lines {
   position: absolute;
   float: left;
@@ -157,10 +183,6 @@ p.format {
   bottom: 40px;
   width: 25%;
   height: 320px;
-  border: 5px solid var(--blue);
-  background-color: transparent;
-  box-shadow: 6px 6px 8px var(--blue);
-  border-radius: 10px;
 }
 
 .score-level-lines div {

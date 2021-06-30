@@ -14,7 +14,7 @@
       <div class="game-board">
         <canvas id="gameBoard"></canvas>
 
-        <div id="menu">
+        <div class="menu">
           <div class="logo">
             <p>
               <span style="color:#ea1118">T</span>
@@ -29,23 +29,47 @@
           <button class="button" id="resumeBtn" onclick="resume()">RESUME</button>
           <button class="button" id="playBtn" onclick="play()">PLAY</button>
           <button class="button" id="settingsBtn" onclick="setup()">SETTINGS</button>
-          <button class="button"id="helpBtn" onclick="help()">HOW TO PLAY</button>
+          <button class="button" id="helpBtn" onclick="help()">HOW TO PLAY</button>
           <button class="button" id="restartBtn" onclick="restart()">RESTART</button>
           <button class="button" id="quitBtn" onclick="quit()">QUIT</button>
         </div>
+
+        <div class="menu" id="settingsMenu">
+          <div class="logo">
+            <p>
+              <span style="color:#ea1118">T</span>
+              <span style="color:#fe9e15">E</span>
+              <span style="color:#ffe62c">T</span>
+              <span style="color:#51cf3a">R</span>
+              <span style="color:#00e9f9">I</span>
+              <span style="color:#c825c3">S</span>
+            </p>
+          </div>
+
+          <p id="settingsTitle">SETTINGS</p>
+
+          <form>
+            <label for="soundFX">Sound effects: </label>
+            <input type="checkbox" id="soundFX" checked /><br />
+            <label for="music">Music: </label>
+            <input type="checkbox" id="music" checked />
+          </form>
+
+          <button class="button" id="settingsDone" onclick="doneSetup()">Done</button>
+        </div>
       </div>
 
-      <div class="hold">
+      <div class="hold myborder">
         <p class="format">HOLD</p>
         <canvas id="hold"></canvas>
       </div>
 
-      <div class="next">
+      <div class="next myborder">
         <p class="format">NEXT</p>
         <canvas id="next"></canvas>
       </div>
 
-      <div class="score-level-lines">
+      <div class="score-level-lines myborder">
         <p class="format">SCORE</p>
         <div id="score"></div>
         <p class="format">LEVEL</p>
@@ -57,9 +81,19 @@
       <button id="pauseBtn" onclick="pause()"><i class="fa fa-pause"></i></button>
 
       <div id="help">
-        <img src="/images/help.png" alt="How to play" width="450"/>
+        <img src="images/help.png" alt="How to play" width="450" />
         <button class="button" id="done" onclick="done()">Done</button>
       </div>
+    </div>
+
+    <div class="relaxing-music myborder">
+      <p class="format">MUSIC</p>
+      <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/l43kG7iDSw8?start=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
     </div>
   </div>
 

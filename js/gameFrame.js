@@ -9,17 +9,21 @@ const nextCanvas = document.getElementById("next");
 const nextContext = nextCanvas.getContext("2d");
 const holdCanvas = document.getElementById("hold");
 const holdContext = holdCanvas.getContext("2d");
-const menuElement = document.getElementById("menu");
+const menuElement = document.getElementsByClassName("menu")[0];
 const pauseElement = document.getElementById("pauseBtn");
 const playElement = document.getElementById("playBtn");
 const resumeElement = document.getElementById("resumeBtn");
 const quitElement = document.getElementById("quitBtn");
 const restartElement = document.getElementById("restartBtn");
 const howToPlayElement = document.getElementById("helpBtn");
-const settingsElement = document.getElementById("settingsBtn");
+const settingsBtnElement = document.getElementById("settingsBtn");
 const gameOverElement = document.getElementById("gameOver");
 const helpElement = document.getElementById("help");
-const doneElement = document.getElementById("done")
+const doneElement = document.getElementById("done");
+const settingsMenuElement = document.getElementById("settingsMenu");
+const settingsTitleElement = document.getElementById("settingsTitle");
+const settingsDoneElement = document.getElementById("settingsDone");
+const soundFXElement = document.getElementById("soundFX");
 
 // draw a square
 function drawSquare(x, y, color, borderColor) {

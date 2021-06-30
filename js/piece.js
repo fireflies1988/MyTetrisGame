@@ -289,6 +289,7 @@ class Piece {
         if (this.y + r < 0) {
           clearInterval(intervalID1);
           clearInterval(intervalID2);
+          gameoverSound.play();
           showGameOverMenu();
           return;
         }
@@ -297,7 +298,7 @@ class Piece {
       }
     }
 
-    let flag = false;  // true if row full exists
+    let counter = 0;
     // remove full rows
     for (let r = 0; r < ROW; r++) {
       let isRowFull = true;
@@ -308,7 +309,7 @@ class Piece {
         }
       }
       if (isRowFull) {
-        flag = true;
+        clearLineSound.play();
         // move down all rows above it
         for (let y = r; y >= 1; y--) {
           for (let c = 0; c < COLUMN; c++) {
@@ -320,14 +321,22 @@ class Piece {
           board[0][c] = VACANT;
         }
         // increase the score
-        score += 10;
+        counter++;
         lines++;
-
       }
     }
-    if (flag == true) {
-        clearLineSound.play();
+
+    // calculate score
+    if (counter == 1) {
+      score += SINGLE_LINE_CLEAR;
+    } else if (counter == 2) {
+      score += DOUBLE_LINE_CLEAR;
+    } else if (counter == 3) {
+      score += TRIPLE_LINE_CLEAR;
+    } else if (counter == 4) {
+      score += TETRIS_LINE_CLEAR;
     }
+
     // update the board
     drawBoard();
 
