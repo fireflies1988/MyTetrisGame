@@ -9,7 +9,32 @@
   <script src="https://kit.fontawesome.com/fdf99d5bd4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="main">
+  <section id="loadingSection">
+    <div class="loader">
+      <span style="--i:1;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:3;"></span>
+      <span style="--i:4;"></span>
+      <span style="--i:5;"></span>
+      <span style="--i:6;"></span>
+      <span style="--i:7;"></span>
+      <span style="--i:8;"></span>
+      <span style="--i:9;"></span>
+      <span style="--i:10;"></span>
+      <span style="--i:11;"></span>
+      <span style="--i:12;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:15;"></span>
+      <span style="--i:16;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:20;"></span>
+    </div>
+  </section>
+
+  <div class="main" id="mainSection">
     <div class="game-frame">
       <div class="game-board">
         <canvas id="gameBoard"></canvas>
@@ -52,7 +77,9 @@
             <label for="soundFX">Sound effects: </label>
             <input type="checkbox" id="soundFX" checked /><br />
             <label for="music">Music: </label>
-            <input type="checkbox" id="music" checked />
+            <input type="checkbox" id="music" checked /><br />
+            <label for="frameVibration">Frame vibration: </label>
+            <input type="checkbox" id="frameVibration" checked />
           </form>
 
           <button class="button" id="settingsDone" onclick="doneSetup()">Done</button>
@@ -98,7 +125,7 @@
   </div>
 
 
-  <footer>
+  <footer id="footerSection">
     <div class="footer">
       <div class="about-tetris">
         <h2>About Tetris</h2>

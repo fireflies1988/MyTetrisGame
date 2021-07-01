@@ -1,6 +1,3 @@
-let score = 0;
-let lines = 0;
-let level = 1;
 const keysPressed = {};
 const isPressed = {}; // used for making keydown event fired only once
 let disabled = false; // disable moveDown() function called by intervalID2
@@ -56,6 +53,9 @@ function control() {
   }
   // space for hard drop
   if (keysPressed[32]) {
+    if (frameVibrationElement.checked) {
+      animate();
+    }
     keysPressed[32] = false;
     clearInterval(intervalID2);
     intervalID2 = setInterval(drop, 1);
@@ -133,6 +133,19 @@ function Sound(src) {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// loading section
+loadingSectionElement.addEventListener("animationstart", startLoading);
+loadingSectionElement.addEventListener("animationend", endLoading);
+function startLoading() {
+  mainSectionElement.style.display = "none";
+  footerSectionElement.style.display = "none";
+}
+function endLoading() {
+  loadingSectionElement.style.display = "none";
+  mainSectionElement.style.display = "block";
+  footerSectionElement.style.display = "block";
 }
 
 function showPauseMenu() {
@@ -256,4 +269,18 @@ function doneSetup() {
   settingsMenuElement.style.display = "none";
   settingsTitleElement.style.display = "none";
   menuElement.style.display = "initial";
+}
+
+function animate() {
+  let pos = 3;
+  boardCanvas.style.top = pos + "px";
+  let id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos--;
+      boardCanvas.style.top = pos + "px";
+    }
+  }
 }

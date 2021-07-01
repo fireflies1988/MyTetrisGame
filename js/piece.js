@@ -1,3 +1,21 @@
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate random number 
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
+let score = 0;
+let lines = 0;
+let level = 1;
+
+let n = -1;
+shuffleArray(pieces);
+let time = LEVEL[level - 1];
+
 class Piece {
   constructor(tetromino, name, color) {
     this.tetromino = tetromino;
@@ -18,8 +36,12 @@ class Piece {
   }
 
   static randomPiece() {
-    let random = Math.floor(Math.random() * PIECES.length);
-    return new Piece(PIECES[random][0], PIECES[random][1], PIECES[random][2]);
+    if (n == pieces.length - 1) {
+      n = -1;
+      shuffleArray(pieces);
+    } 
+    n++;
+    return new Piece(pieces[n][0], pieces[n][1], pieces[n][2]);
   }
 
   // just for hold and next canvas
@@ -104,12 +126,12 @@ class Piece {
         this.undraw();
         this.y += 2;
         this.draw();
-        dropTime = 1000;
+        dropTime = time;
         clearInterval(intervalID2);
         intervalID2 = setInterval(drop, dropTime);
         return;
       }
-      dropTime = 1000;
+      dropTime = time;
       clearInterval(intervalID2);
       intervalID2 = setInterval(drop, dropTime);
     }
@@ -336,6 +358,11 @@ class Piece {
     } else if (counter == 4) {
       score += TETRIS_LINE_CLEAR;
     }
+    
+    if (score >= level * BOUND_SCORE && level <= 15) {
+      level++;
+      time = LEVEL[level - 1];
+    }
 
     // update the board
     drawBoard();
@@ -343,6 +370,6 @@ class Piece {
     // update the score 
     scoreElement.innerHTML = score;
     linesElement.innerHTML = lines;
-    
+    levelElement.innerHTML = level;
   }
 }

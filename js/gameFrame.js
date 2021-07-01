@@ -24,6 +24,10 @@ const settingsMenuElement = document.getElementById("settingsMenu");
 const settingsTitleElement = document.getElementById("settingsTitle");
 const settingsDoneElement = document.getElementById("settingsDone");
 const soundFXElement = document.getElementById("soundFX");
+const frameVibrationElement = document.getElementById("frameVibration");
+const loadingSectionElement = document.getElementById("loadingSection");
+const mainSectionElement = document.getElementById("mainSection");
+const footerSectionElement = document.getElementById("footerSection");
 
 // draw a square
 function drawSquare(x, y, color, borderColor) {

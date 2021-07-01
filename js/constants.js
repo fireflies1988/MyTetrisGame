@@ -10,6 +10,10 @@ const DOUBLE_LINE_CLEAR = 300;
 const TRIPLE_LINE_CLEAR = 500;
 const TETRIS_LINE_CLEAR = 800;
 
+// drop speed increases with the level
+const BOUND_SCORE = 2000;
+const LEVEL = [1000, 950, 900, 850, 800, 750, 700, 650, 600, 550, 500, 450, 400, 350, 300];
+
 const I = [
 	[
 		[0, 0, 0, 0],
@@ -161,7 +165,7 @@ const Z = [
 	]
 ];
 
-const PIECES = [
+const pieces = [
 	[Z, "Z", "Red"],
 	[S, "S", "LawnGreen"],
 	[T, "T", "BlueViolet"],
