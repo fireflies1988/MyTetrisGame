@@ -14,7 +14,10 @@ let level = 1;
 
 let n = -1;
 shuffleArray(pieces);
-let time = LEVEL[level - 1];
+
+const WALL_KICK1 = [-1, 1, -2, 2];
+const WALL_KICK2 = [1, -1, 2, -2];
+const BOUNCE_UP = [2, 1, -1, -2];
 
 class Piece {
   constructor(tetromino, name, color) {
@@ -118,7 +121,7 @@ class Piece {
 
   // move down the piece
   async moveDown() {
-    if (disabled) {
+    if (moveDownDisabled) {
       return;
     }
     if (this.y == -2 || this.y == -3) {
@@ -126,12 +129,12 @@ class Piece {
         this.undraw();
         this.y += 2;
         this.draw();
-        dropTime = time;
+        dropTime = LEVEL[level - 1];
         clearInterval(intervalID2);
         intervalID2 = setInterval(drop, dropTime);
         return;
       }
-      dropTime = time;
+      dropTime = LEVEL[level - 1];
       clearInterval(intervalID2);
       intervalID2 = setInterval(drop, dropTime);
     }
@@ -141,23 +144,24 @@ class Piece {
       this.draw();
     } else {
       // lock the piece and generate a new one
-      disabled = true;
+      moveDownDisabled = true;
       if (!isHardDrop) {
-        await sleep(400);
+        await sleep(500);
       }
-      hardDropSound.play();
       if (!this.collides(0, 1, this.activeTetromino)) {
-        disabled = false;
+        moveDownDisabled = false;
         return;
       } else {
-        if (isHoldOnce) {
-          isHoldOnce = false;
+        if (isHeldOnce) {
+          isHeldOnce = false;
         }
-        disabled = false;
+        moveDownDisabled = false;
         isHardDrop = false;
+
         dropTime = 1;
         clearInterval(intervalID2);
         intervalID2 = setInterval(drop, dropTime);
+
         this.lock();
         p = nextPiece;
         p.draw();
@@ -188,25 +192,29 @@ class Piece {
   // rotate the piece
   rotateRight() {
     let next = this.tetromino[(this.pattern + 1) % this.tetromino.length];
-    let kick = 0;
+    let bounce = 0, bounceUp = 0;
     if (this.collides(0, 0, next)) {
-      if (this.x > COLUMN / 2) {
-        if (this.name == "I" && this.pattern == 3) {
-          kick = -2;
-        } else {
-          kick = -1; // move the piece to the left when colliding with the right wall
+      let bounceUpLength = this.name == "I" ? BOUNCE_UP.length : BOUNCE_UP.length - 1;
+      let bounceLength = this.name == "I" ? WALL_KICK1.length : WALL_KICK1.length - 2;
+      let flag = false;
+      for (let i = 0; i < bounceUpLength; i++) {
+        for (let j = 0; j < bounceLength; j++) {
+          if (!this.collides(WALL_KICK1[j], BOUNCE_UP[i], next)) {
+            bounce = WALL_KICK1[j];
+            bounceUp = BOUNCE_UP[i];
+            flag = true;
+            break;
+          }
         }
-      } else {
-        if (this.name == "I" && this.pattern == 1) {
-          kick = 2;
-        } else {
-          kick = 1; // move the piece to the right when colliding with the left wall
+        if (flag) {
+          break;
         }
       }
     }
-    if (!this.collides(kick, 0, next)) {
+    if (!this.collides(bounce, bounceUp, next)) {
       this.undraw();
-      this.x += kick;
+      this.x += bounce;
+      this.y += bounceUp;
       this.pattern = (this.pattern + 1) % this.tetromino.length;
       this.activeTetromino = this.tetromino[this.pattern];
       this.draw();
@@ -214,25 +222,29 @@ class Piece {
   }
   rotateLeft() {
     let previous = this.tetromino[this.pattern == 0 ? this.tetromino.length - 1 : this.pattern - 1];
-    let kick = 0;
+    let bounce = 0, bounceUp = 0;
     if (this.collides(0, 0, previous)) {
-      if (this.x > COLUMN / 2) {
-        if (this.name == "I" && this.pattern == 3) {
-          kick = -2;
-        } else {
-          kick = -1; // move the piece to the left when colliding with the right wall
+      let bounceUpLength = this.name == "I" ? BOUNCE_UP.length : BOUNCE_UP.length - 1;
+      let bounceLength = this.name == "I" ? WALL_KICK2.length : WALL_KICK2.length - 2;
+      let flag = false;
+      for (let i = 0; i < bounceUpLength; i++) {
+        for (let j = 0; j < bounceLength; j++) {
+          if (!this.collides(WALL_KICK2[j], BOUNCE_UP[i], previous)) {
+            bounce = WALL_KICK2[j];
+            bounceUp = BOUNCE_UP[i];
+            flag = true;
+            break;
+          }
         }
-      } else {
-        if (this.name == "I" && this.pattern == 1) {
-          kick = 2;
-        } else {
-          kick = 1; // move the piece to the right when colliding with the left wall
+        if (flag) {
+          break;
         }
       }
     }
-    if (!this.collides(kick, 0, previous)) {
+    if (!this.collides(bounce, bounceUp, previous)) {
       this.undraw();
-      this.x += kick;
+      this.x += bounce;
+      this.y += bounceUp;
       this.pattern = this.pattern == 0 ? this.tetromino.length - 1 : this.pattern - 1;
       this.activeTetromino = this.tetromino[this.pattern];
       this.draw();
@@ -301,6 +313,7 @@ class Piece {
   }
 
   lock() {
+    hardDropSound.play();
     for (let r = 0; r < this.activeTetromino.length; r++) {
       for (let c = 0; c < this.activeTetromino.length; c++) {
         // skip the vacant squares
@@ -359,9 +372,8 @@ class Piece {
       score += TETRIS_LINE_CLEAR;
     }
     
-    if (score >= level * BOUND_SCORE && level <= 15) {
+    if (score >= level * BOUND_SCORE && level < 15) {
       level++;
-      time = LEVEL[level - 1];
     }
 
     // update the board

@@ -1,8 +1,8 @@
 const keysPressed = {};
 const isPressed = {}; // used for making keydown event fired only once
-let disabled = false; // disable moveDown() function called by intervalID2
+let moveDownDisabled = false; // disable moveDown() function called by intervalID2
 let isHardDrop = false;
-let isHoldOnce = false;
+let isHeldOnce = false;
 let dropTime;
 let p, nextPiece, holdPiece;
 let intervalID1, intervalID2;
@@ -64,7 +64,7 @@ function control() {
   // c for hold piece
   if (keysPressed[67]) {
     keysPressed[67] = false;
-    if (!isHoldOnce) {
+    if (!isHeldOnce) {
       clearInterval(intervalID2);
       intervalID2 = setInterval(drop, 1);
       p.undraw();
@@ -88,7 +88,7 @@ function control() {
           p.y = -2;
         }
       }
-      isHoldOnce = true;
+      isHeldOnce = true;
     }
   }
 }
