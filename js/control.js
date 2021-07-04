@@ -3,6 +3,7 @@ const isPressed = {}; // used for making keydown event fired only once
 let moveDownDisabled = false; // disable moveDown() function called by intervalID2
 let isHardDrop = false;
 let isHeldOnce = false;
+let isPaused = false;
 let dropTime;
 let p, nextPiece, holdPiece;
 let intervalID1, intervalID2;
@@ -193,6 +194,10 @@ function showGameOverMenu() {
 }
 
 function play() {
+  // randomize piece
+  n = -1;
+  shuffleArray(pieces);
+
   // initiate a piece
   p = Piece.randomPiece();
   p.draw();
@@ -217,18 +222,21 @@ function play() {
 }
 
 function pause() {
+  isPaused = true;
   clearInterval(intervalID1);
   clearInterval(intervalID2);
   showPauseMenu();
 }
 
 function resume() {
+  isPaused = false;
   intervalID1 = setInterval(control, 60);
   intervalID2 = setInterval(drop, dropTime);
   hidePauseMenu();
 }
 
 function quit() {
+  isPaused = false;
   clearCanvas(nextCanvas, nextContext);
   clearCanvas(holdCanvas, holdContext);
   clearInterval(intervalID1);
@@ -240,6 +248,7 @@ function quit() {
 }
 
 function restart() {
+  isPaused = false;
   clearCanvas(nextCanvas, nextContext);
   clearCanvas(holdCanvas, holdContext);
   resetScore();
