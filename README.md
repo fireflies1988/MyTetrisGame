@@ -1,5 +1,10 @@
 # My Tetris Game
-🤗 Beautiful Tetris created with HTML, CSS, JavaScript.
+🤗 Beautiful Tetris created with HTML, CSS, JavaScript. [Play it now](https://beautiful-tetris.vercel.app/)
+
+# Table of contents
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Sources](#sources)
 
 # Features
 1. **Lock delay**: refers to how many seconds a Tetromino waits while on the ground before locking.
@@ -14,7 +19,7 @@
     * Wall kicks
       > When the player attempts to rotate a tetromino, but the position it would normally occupy after basic rotation is obstructed, 
       (either by the wall or floor of the playfield, or by the stack), the game will attempt to "kick" the tetromino into an alternative position nearby.
-      - There are a bunch of bugs here that I haven’t fixed yet 😂. But it’s still playable, you can do almost all kinds of twists that a modern Tetris has like Tetris 99, Tetris Axis...
+      </blockquote>There are a bunch of bugs here that I haven’t fixed yet 😂. But it’s still playable, you can do almost all kinds of twists that a modern Tetris has like Tetris 99, Tetris Axis...
 3. **Next queue**: preview the upcoming Tetrimino in the Next Queue to plan ahead and increase your scoring opportunities.
 4. **Hold queue**: store a falling Tetrimino in the Hold Queue for later use.
 5. **Ghost piece**: use the Ghost Piece to determine the best fit for the falling Tetrimino. This helpful guide appears directly below the falling Tetrimino and displays possible placements.
