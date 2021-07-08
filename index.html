@@ -9,157 +9,159 @@
   <script src="https://kit.fontawesome.com/fdf99d5bd4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <section id="loadingSection">
-    <div class="loader">
-      <span style="--i:1;"></span>
-      <span style="--i:2;"></span>
-      <span style="--i:3;"></span>
-      <span style="--i:4;"></span>
-      <span style="--i:5;"></span>
-      <span style="--i:6;"></span>
-      <span style="--i:7;"></span>
-      <span style="--i:8;"></span>
-      <span style="--i:9;"></span>
-      <span style="--i:10;"></span>
-      <span style="--i:11;"></span>
-      <span style="--i:12;"></span>
-      <span style="--i:13;"></span>
-      <span style="--i:14;"></span>
-      <span style="--i:15;"></span>
-      <span style="--i:16;"></span>
-      <span style="--i:17;"></span>
-      <span style="--i:18;"></span>
-      <span style="--i:19;"></span>
-      <span style="--i:20;"></span>
-    </div>
-  </section>
+  <div id="container">
+    <section id="loadingSection">
+      <div class="loader">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+        <span style="--i:8;"></span>
+        <span style="--i:9;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+      </div>
+    </section>
 
-  <div class="main" id="mainSection">
-    <div class="game-frame">
-      <div class="game-board">
-        <canvas id="gameBoard"></canvas>
+    <div class="main" id="mainSection">
+      <div class="game-frame">
+        <div class="game-board">
+          <canvas id="gameBoard"></canvas>
 
-        <div class="menu">
-          <div class="logo">
-            <p>
-              <span style="color:#ea1118">T</span>
-              <span style="color:#fe9e15">E</span>
-              <span style="color:#ffe62c">T</span>
-              <span style="color:#51cf3a">R</span>
-              <span style="color:#00e9f9">I</span>
-              <span style="color:#c825c3">S</span>
-            </p>
-          </div>
-          <p id="gameOver">GAME OVER</p>
-          <button class="button" id="resumeBtn" onclick="resume()">RESUME</button>
-          <button class="button" id="playBtn" onclick="play()">PLAY</button>
-          <button class="button" id="settingsBtn" onclick="setup()">SETTINGS</button>
-          <button class="button" id="helpBtn" onclick="help()">HOW TO PLAY</button>
-          <button class="button" id="restartBtn" onclick="restart()">RESTART</button>
-          <button class="button" id="quitBtn" onclick="quit()">QUIT</button>
-        </div>
-
-        <div class="menu" id="settingsMenu">
-          <div class="logo">
-            <p>
-              <span style="color:#ea1118">T</span>
-              <span style="color:#fe9e15">E</span>
-              <span style="color:#ffe62c">T</span>
-              <span style="color:#51cf3a">R</span>
-              <span style="color:#00e9f9">I</span>
-              <span style="color:#c825c3">S</span>
-            </p>
+          <div class="menu">
+            <div class="logo">
+              <p>
+                <span style="color:#ea1118">T</span>
+                <span style="color:#fe9e15">E</span>
+                <span style="color:#ffe62c">T</span>
+                <span style="color:#51cf3a">R</span>
+                <span style="color:#00e9f9">I</span>
+                <span style="color:#c825c3">S</span>
+              </p>
+            </div>
+            <p id="gameOver">GAME OVER</p>
+            <button class="button" id="resumeBtn" onclick="resume()">RESUME</button>
+            <button class="button" id="playBtn" onclick="play()">PLAY</button>
+            <button class="button" id="settingsBtn" onclick="setup()">SETTINGS</button>
+            <button class="button" id="helpBtn" onclick="help()">HOW TO PLAY</button>
+            <button class="button" id="restartBtn" onclick="restart()">RESTART</button>
+            <button class="button" id="quitBtn" onclick="quit()">QUIT</button>
           </div>
 
-          <p id="settingsTitle">SETTINGS</p>
+          <div class="menu" id="settingsMenu">
+            <div class="logo">
+              <p>
+                <span style="color:#ea1118">T</span>
+                <span style="color:#fe9e15">E</span>
+                <span style="color:#ffe62c">T</span>
+                <span style="color:#51cf3a">R</span>
+                <span style="color:#00e9f9">I</span>
+                <span style="color:#c825c3">S</span>
+              </p>
+            </div>
 
-          <form>
-            <label for="soundFX">Sound effects: </label>
-            <input type="checkbox" id="soundFX" checked /><br />
-            <label for="music">Music: </label>
-            <input type="checkbox" id="music" checked /><br />
-            <label for="frameVibration">Frame vibration: </label>
-            <input type="checkbox" id="frameVibration" checked />
-          </form>
+            <p id="settingsTitle">SETTINGS</p>
 
-          <button class="button" id="settingsDone" onclick="doneSetup()">Done</button>
+            <form>
+              <label for="soundFX">Sound effects: </label>
+              <input type="checkbox" id="soundFX" checked /><br />
+              <label for="music">Music: </label>
+              <input type="checkbox" id="music" checked /><br />
+              <label for="frameVibration">Frame vibration: </label>
+              <input type="checkbox" id="frameVibration" checked />
+            </form>
+
+            <button class="button" id="settingsDone" onclick="doneSetup()">Done</button>
+          </div>
+        </div>
+
+        <div class="hold myborder">
+          <p class="format">HOLD</p>
+          <canvas id="hold"></canvas>
+        </div>
+
+        <div class="next myborder">
+          <p class="format">NEXT</p>
+          <canvas id="next"></canvas>
+        </div>
+
+        <div class="score-level-lines myborder">
+          <p class="format">SCORE</p>
+          <div id="score"></div>
+          <p class="format">LEVEL</p>
+          <div id="level"></div>
+          <p class="format">LINES</p>
+          <div id="lines"></div>
+        </div>
+
+        <button id="pauseBtn" onclick="pause()"><i class="fa fa-pause"></i></button>
+
+        <div id="help">
+          <img src="images/help.png" alt="How to play" width="450" />
+          <button class="button" id="done" onclick="done()">Done</button>
         </div>
       </div>
 
-      <div class="hold myborder">
-        <p class="format">HOLD</p>
-        <canvas id="hold"></canvas>
-      </div>
-
-      <div class="next myborder">
-        <p class="format">NEXT</p>
-        <canvas id="next"></canvas>
-      </div>
-
-      <div class="score-level-lines myborder">
-        <p class="format">SCORE</p>
-        <div id="score"></div>
-        <p class="format">LEVEL</p>
-        <div id="level"></div>
-        <p class="format">LINES</p>
-        <div id="lines"></div>
-      </div>
-
-      <button id="pauseBtn" onclick="pause()"><i class="fa fa-pause"></i></button>
-
-      <div id="help">
-        <img src="images/help.png" alt="How to play" width="450" />
-        <button class="button" id="done" onclick="done()">Done</button>
+      <div class="relaxing-music myborder">
+        <p class="format">MUSIC</p>
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/l43kG7iDSw8?start=1"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
       </div>
     </div>
 
-    <div class="relaxing-music myborder">
-      <p class="format">MUSIC</p>
-      <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/l43kG7iDSw8?start=1"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
-    </div>
+
+    <footer id="footerSection">
+      <div class="footer">
+        <div class="about-tetris">
+          <h2>About Tetris</h2>
+          <p>
+            Tetris ® & © 1985~2020 Tetris Holding. Tetris logos, Tetris theme song and Tetriminos are trademarks
+            of Tetris Holding. The Tetris trade dress is owned by Tetris Holding.
+            Licensed to The Tetris Company. Tetris Game Design by Alexey Pajitnov. Tetris Logo Design by Roger Dean.
+            All Rights Reserved. All other trademarks are the property of their respective owners.
+          </p>
+        </div>
+
+        <div class="designed-by">
+          <h2>Designed by</h2>
+          <p>Tung Kieu</p>
+        </div>
+
+        <div class="social-media">
+          <h2>Social media</h2>
+          <i class="fa fa-facebook"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-instagram"></i>
+          <i class="fa fa-youtube"></i>
+          <i class="fa fa-snapchat"></i>
+          <i class="fa fa-pinterest"></i>
+        </div>
+
+        <div class="contact-info">
+          <h2>Contact info</h2>
+          <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;647 Hell Street, Phoenixville, PA, 19460, Vietnam</p>
+          <p><i class="fa fa-phone"></i>&nbsp;&nbsp;+1234 567 890</p>
+          <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;xzlupinzx@gmail.com</p>
+        </div>
+      </div>
+    </footer>
   </div>
-
-
-  <footer id="footerSection">
-    <div class="footer">
-      <div class="about-tetris">
-        <h2>About Tetris</h2>
-        <p>
-          Tetris ® & © 1985~2020 Tetris Holding. Tetris logos, Tetris theme song and Tetriminos are trademarks
-          of Tetris Holding. The Tetris trade dress is owned by Tetris Holding.
-          Licensed to The Tetris Company. Tetris Game Design by Alexey Pajitnov. Tetris Logo Design by Roger Dean.
-          All Rights Reserved. All other trademarks are the property of their respective owners.
-        </p>
-      </div>
-
-      <div class="designed-by">
-        <h2>Designed by</h2>
-        <p>Tung Kieu</p>
-      </div>
-
-      <div class="social-media">
-        <h2>Social media</h2>
-        <i class="fa fa-facebook"></i>
-        <i class="fa fa-twitter"></i>
-        <i class="fa fa-instagram"></i>
-        <i class="fa fa-youtube"></i>
-        <i class="fa fa-snapchat"></i>
-        <i class="fa fa-pinterest"></i>
-      </div>
-
-      <div class="contact-info">
-        <h2>Contact info</h2>
-        <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;647 Hell Street, Phoenixville, PA, 19460, Vietnam</p>
-        <p><i class="fa fa-phone"></i>&nbsp;&nbsp;+1234 567 890</p>
-        <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;xzlupinzx@gmail.com</p>
-      </div>
-    </div>
-  </footer>
 
   <script>
     window.addEventListener("keydown", function(e) {

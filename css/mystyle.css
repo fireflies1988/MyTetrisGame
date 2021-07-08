@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+#container {
+  height: 100vh;
+}
+
 section {
   display: flex;
   justify-content: center;
@@ -84,7 +88,7 @@ section .loader span::before {
   position: relative;
   background: url("../images/butterflies-background.jpg") no-repeat center; /*the path is relative to the .css file*/
   background-size: cover;
-  height: 850px;
+  height: 115vh;
 }
 
 div.game-frame {
